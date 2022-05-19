@@ -1,0 +1,86 @@
+\RequirePackage{silence} % :-\
+    \WarningFilter{scrreprt}{Usage of package `titlesec'}
+    %\WarningFilter{scrreprt}{Activating an ugly workaround}
+    \WarningFilter{titlesec}{Non standard sectioning command detected}
+\documentclass[
+        twoside,
+        openright,
+        titlepage,
+        numbers=noenddot,
+        % 1headlines,
+        headinclude, footinclude, cleardoublepage=empty, abstract=on,
+        BCOR=5mm,
+        % Generate for A4? Then uncomment A4 page text area stuff in classicthesis-config
+        % paper=a4, fontsize=12pt,
+        paper=b5, fontsize=11pt,
+        % draft
+    ]{scrreprt}
+
+\usepackage{lipsum}
+
+\input{classicthesis-config}
+
+\addbibresource{thesis.bib}
+\addbibresource[label=ownpubs]{phd.bib}
+
+\defbibenvironment{ownpubs}
+    {\list
+        {}
+        {%
+            \setlength{\leftmargin}{\bibhang}%
+            \setlength{\itemindent}{-\leftmargin}%
+            \setlength{\itemsep}{\bibitemsep}%
+            \setlength{\parsep}{\bibparsep}%
+        }%
+    }
+    {\endlist}
+{\item}
+
+% This commands overrides the biblatex package option
+\makeatletter
+\newrobustcmd*{\setmaxcitenames}{\numdef\blx@maxcitenames}
+\makeatother
+
+\newcommand{\chapabstract}[1]{%
+    \begin{quote}
+    #1
+    \end{quote}
+}
+
+%\hyphenation{put special hyphenation here}
+
+\begin{document}
+    \frenchspacing
+    \raggedbottom
+    \selectlanguage{american}
+
+    % Front matter -------------------------------------------------------------
+    \pagestyle{plain}
+    \pagenumbering{roman}
+
+    \include{front_matter/title_page-1}
+    \include{front_matter/title_page_back-1}     \cleardoublepage
+    \include{front_matter/title_page-2}
+    \include{front_matter/title_page_back-2}     \cleardoublepage
+
+    \setcounter{page}{1}
+    \include{front_matter/contents}              \cleardoublepage
+
+    % Main matter --------------------------------------------------------------
+    \pagestyle{scrheadings}
+    \pagenumbering{arabic}
+    \include{main_matter/introduction}           \cleardoublepage
+    \include{main_matter/paper-1}                \cleardoublepage
+    \include{main_matter/paper-2}                \cleardoublepage
+    \include{main_matter/paper-3}                \cleardoublepage
+    \include{main_matter/paper-4}                \cleardoublepage
+    \include{main_matter/synthesis}              \cleardoublepage
+
+    % Back matter --------------------------------------------------------------
+    \include{back_matter/bibliography}           \cleardoublepage
+
+    \include{back_matter/summary}                \cleardoublepage
+    \include{back_matter/samenvatting}           \cleardoublepage
+    \include{back_matter/acknowledgements}       \cleardoublepage
+    \include{back_matter/author}                 \cleardoublepage
+\end{document}

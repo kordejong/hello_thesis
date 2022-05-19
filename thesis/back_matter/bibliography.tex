@@ -1,0 +1,13 @@
+\begingroup
+    \defbibheading{bibintoc}[\bibname]{%
+        \phantomsection
+        \markboth{\spacedlowsmallcaps{#1}}{}%
+        \addtocontents{toc}{\protect\vspace{\beforebibskip}}%
+        \addcontentsline{toc}{chapter}{\tocEntry{#1}}%
+        \chapter*{#1}%
+    }
+
+    \emergencystretch=1em
+    \setcounter{biburlnumpenalty}{9000}
+    \printbibliography[heading=bibintoc]
+\endgroup

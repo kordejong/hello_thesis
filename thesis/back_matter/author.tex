@@ -1,0 +1,19 @@
+\begingroup
+    \let\clearpage\relax
+    \let\cleardoublepage\relax
+
+    \phantomsection
+    \chapter*{Curriculum vitae}
+    \addcontentsline{toc}{chapter}{\tocEntry{Curriculum vitae}}
+    \markboth{\spacedlowsmallcaps{Curriculum vitae}}{}
+    \lipsum[1-3]
+
+    \begin{refsection}[ownpubs]
+        \emergencystretch=1em
+        \nocite{*}  % List'm all
+        \newrefcontext[sorting=ydnt]
+        \printbibliography[env=ownpubs, type=article, heading=subbibliography, title={Journal publications}]
+        \printbibliography[env=ownpubs, type=incollection, heading=subbibliography, title={Book chapters}]
+        \printbibliography[env=ownpubs, type=misc, heading=subbibliography, title={Software}]
+    \end{refsection}
+\endgroup
